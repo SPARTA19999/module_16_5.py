@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block crud_container %}
+    {% if user %}
+        <article class="card container fluid">
+            <div class="card-body">
+                <h2>Информация о пользователе</h2>
+                <p><strong>ID:</strong> {{ user.id }}</p>
+                <p><strong>Имя:</strong> {{ user.username }}</p>
+                <p><strong>Возраст:</strong> {{ user.age }}</p>
+                <a href="/" class="btn btn-primary mt-3">Вернуться к списку</a>
+            </div>
+        </article>
+        <br>
+    {% else %}
+        <section class="container-fluid">
+            <h2 align="center">Users</h2>
+            <br>
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    {% for user in users %}
+                        <li class="list-group-item">
+                            <a href="/user/{{ user.id }}" class="text-decoration-none">
+                                {{ user.username }} ({{ user.age }} лет)
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
